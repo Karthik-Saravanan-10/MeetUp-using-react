@@ -1,0 +1,32 @@
+.head {
+    background-color: brown;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px;
+    align-items: center;
+    color: white;
+    margin: 5px;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    font-size: 20px;
+}
+
+.main {
+    margin: 3rem auto;
+    width: 90%;
+    max-width: 40rem;
+}
+
+.Tittle{
+    text-align: center;
+}
+
+.loader{
+    font-size: 24px;
+    text-align: center;
+}
