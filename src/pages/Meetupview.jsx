@@ -1,6 +1,7 @@
 import Allmeet from "../components/Allmeet";
 import style from "./Header.module.css";
 import { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
 
 function Meetupview() {
   let [getData, setgetData] = useState([]);
@@ -30,7 +31,9 @@ function Meetupview() {
         </section>
       ) : (
         <section>
-          <Allmeet section={getData} load={loading} />
+          {getData.map((elem) => {
+            return <Allmeet section={elem} key={elem.id}/>;
+          })}
         </section>
       )}
     </>

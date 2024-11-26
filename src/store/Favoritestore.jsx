@@ -8,7 +8,7 @@ let FavoriteCtx=createContext({
     hasFavorite:(MeetUpId)=>{}
 })
 
-function Favoritestore({children}){
+export function Favoritestore({children}){
     let[favoriteList,setfavoriteList]=useState([]);
 
     function addFavoriteHandler(FavMeetUp){
@@ -23,7 +23,7 @@ function Favoritestore({children}){
         setfavoriteList((prev)=>prev.some(meetup.id === MeetUpId))
     }
 
-    let Context=useContext({
+    let context=useContext({
         favorite:favoriteList,
         totalfavorite:favoriteList.length,
         addFavorite:addFavoriteHandler,
@@ -31,9 +31,9 @@ function Favoritestore({children}){
         hasFavorite:hasFavoriteHandler
     })
 
-    return(<FavoriteCtx.Provider>
+    return(<FavoriteCtx.Provider value={context}>
         {children}
     </FavoriteCtx.Provider>)
 }
 
-export default Favoritestore;
+export default FavoriteCtx;

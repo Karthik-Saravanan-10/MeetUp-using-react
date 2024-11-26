@@ -3,7 +3,7 @@ import Header from "./pages/Header";
 import Favorites from "./components/Favorites";
 import Meet, { dataSender } from "./components/Meet";
 import Meetupview from "./pages/Meetupview";
-import Favoritestore from "./store/Favoritestore";
+import {Favoritestore} from "./store/Favoritestore";
 
 let routers = createBrowserRouter([
   {
