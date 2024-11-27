@@ -1,12 +1,34 @@
 import style from "./Allmeet.module.css";
-import { useState } from "react";
+import { useContext } from "react";
+import FavoriteCtx from "../store/Favoritestore";
 
 function Allmeet({ section }) {
-  let [listFav, setlistFav] = useState(false);
-  function favoriteBtnHandler() {
-    setlistFav(!listFav);
-    console.log(section);
+  //const [listFav, setlistFav] = useState(false);
+  let listFav;
+  const favCtx = useContext(FavoriteCtx);
+  if (favCtx.hasFavorite(section.id)) {
+    listFav = true;
+  } else {
+    listFav = false;
   }
+
+  function toggleFavoriteStatusHandler() {
+    const hasFav = favCtx.hasFavorite(section.id);
+    //setlistFav(!listFav);
+    //console.log(favCtx)
+    if (hasFav) {
+      favCtx.removeFavorite(section.id);
+    } else {
+      favCtx.addFavorite({
+        id: section.id,
+        meetTitle: section.meetTitle,
+        meetDetail: section.meetDetail,
+        meetImage: section.meetImage,
+        meetAddress: section.meetAddress,
+      });
+    }
+  }
+
   return (
     <>
       <div className={style.card} key={section.id}>
@@ -19,7 +41,7 @@ function Allmeet({ section }) {
           <p>{section.meetDetail}</p>
         </div>
         <div className={style.actions}>
-          <button onClick={favoriteBtnHandler}>
+          <button onClick={toggleFavoriteStatusHandler}>
             {listFav ? "Remove Favorite" : "Add Favorite"}
           </button>
         </div>
